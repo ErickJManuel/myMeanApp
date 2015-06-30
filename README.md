@@ -1,3 +1,3 @@
 AppMakers																						Sign Up 	Sign In
 
--[![glyphicon-user](C:\Program Files (x86)\Glyphicons\png\glyphicons-4-user.png)]
+-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
