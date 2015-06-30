@@ -1,0 +1,207 @@
+Getting started with the MEAN stack
+
+The MEAN Stack:
+    MongoDB(database), Express.js(middleware), Angular.js(client side magic), Node.js(server)
+
+During the set up process you will have at least 3 applications open:
+    1. a command line utility (e.g. command prompt, powershell, xcode),
+    2. a browser (e.g. chrome), and
+    3. a code editing program (e.g. Webstorm, Submlime Text, Notepad++)
+
+SET UP YOUR ENVIRONMENT
+If you're using a Windows machine, you have a couple of extra steps to do before you start:
+    1. install Python 2.7.x
+    2. install Microsoft Visual Studio C++ 2012 Express
+
+On Windows/MAC:
+    1. install Node.js
+    2. install Git
+
+Just follow the prompts to do the installations, and go with all the default settings.
+Once you've installed the software above, you're set to use almost any Node.js based code.
+
+GET A GOOD IDE FOR WEB DEVELOPMENT
+
+IDE stands for integrated development environment
+
+IDE software provides lots of tools in one place.  Suggested IDEs are: WebStorm or Sublime Text or Notepad++
+
+START THE GLOBAL MEAN STACK INSTALLATION
+
+Begin the installation process by using Node.js to install a few key programs globally on your pc. Installing something
+globally means that you install it once, and you can use it for all your apps.
+
+QUICK TIP:
+The installation process for the MEAN Stack uses the command line (e.g. command prompt, powershell, xcode). If you're
+running Windows, then you need to start your command line tool as an administrator.  To do this, find the icon for the
+application that you want to run, right click on it and select "Run as administrator".
+
+Now that we've got the command line open.  Let the installations begin!
+
+We'll use npm - Node's package manager to install as set of packages.
+
+QUICK TIP:
+When you see the "$" icon next to the code below - the "$" sign is a universal way to indicate that a line of code
+should go into your command line program.  So, don't copy the $ symbol, but do type (or copy) the text that comes
+after it into your command line program (command prompt, powershell, xcode).
+
+INSTALL BOWER GLOBALLY:
+Bower is another package manager. It can be used when you want to add packages of code to your web app, Bower can
+help you quickly install the code, and help you upgrade to newer versions.
+
+Why do we need two package managers?  At a high level, npm (Node's package manager) is used for node and server side
+packages, whereas Bower is often used for client side packages.
+
+$ npm install -g bower
+
+INSTALL GRUNT GLOBALLY:
+Grunt helps you automate repetitive tasks. Grunt comes in lots of different variaties, and its job is to make your
+job easier.
+
+$ npm install -g grunt-cli
+
+INSTALL YO GLOBALLY:
+Yo is a scaffolding tool.  It can be used to create and set-up your app by asking you questions, taking your input
+and pre-filling parts of your app based on your preferences. It can also help you to quickly create and extend parts
+of your app.
+
+Yo is a pre-population tool.  It helps you pre-populate parts of your app to help with setting up the app quickly.
+
+$ npm install -g yo
+
+There are quite a few variations of the MEAN Stack on GitHub.  The two key repos are:
+Mean.io - packages server side and client side code into one package (more common version of MEAN)
+Mean.js - splits server side code and client side code into 2 separate parts of the app directory (app structure)
+
+I think that MEAN.JS is a good place to start for beginners, especially to leverage Yo.
+
+INSTALL THE MEAN.JS GENERATOR:
+THe MEAN.js generator is the MEAN based code that will be used by Yo.
+
+npm install -g generator-meanjs
+
+CREATE YOUR MEAN APP
+Now we'll use Yo and tell it to take the mean.js generator, and create a new app.  The next set of installations will
+all be done within the folder of our new app.
+
+Almost There!
+
+Now navigate into the directory where you want to create your project.
+
+For example: if I wanted to set up my MEAN app in a new folder called myMEANProject.
+
+$ cd C:\Users\Jane
+$ mkdir myMEANProject       In windows you can also just create this directory and just cd to it
+$ cd C:\Users\Jane\myMEANProject
+
+The last step is to generate a new MEAN app using Yo and the MEAN generator that we installed above:
+
+$ yo meanjs
+
+The yo generator will ask you a set of questions - answer each quetsion and hit the Enter key to move onto the next
+question.
+
+What would you like to call your application? <application_name>
+How would you describe your application? <application_description>
+    DEFAULT: Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js
+How would you describe your application in comma separated key words? <list of comma separated words>
+    DEFAULT: MongoDB, Express, AngularJS, Node.js
+What is your company/author name? <Company or author name>
+Would you like to generate the article example CRUD module? (Y/n) <n for now, we will build this later>
+    It's an example that will help to create an article example in our app
+Which AngularJS modules would you like to include? (Press <space> to select)
+    [X] ngCookies
+    [X] ngAnimate
+    [X] ngTouch
+    [X] ngSanitize
+        Leave as defaults which is all selected
+
+Once you get to the end, the relevant dependencies for the MEAN stack will be installed for your app.
+
+This will take a few minutes.
+
+If you get to the end and the process fails, then do the following:
+
+Only if the installation fails
+$ npm update
+
+Leave your command line tool open, as you'll need it again in a few minutes.
+
+If we run grunt now:
+$ grunt
+
+It will fail, because our MongoDB is not yet set up.
+
+SET UP A MONGO DB DATABASE:
+We're going to set up a free sandbox account.
+
+Go to Mongolab or MongoHQ (now known as Compose) and log-in or register for a new account.
+
+If you're using Compose, then follow the steps below:
+    1. Login and select the 'Add Databse' button
+    2. Select "Sandbox Database"
+    3. Give your database a name
+    4. Navigate to "Admin: Users"
+    5. Add a new database user - take note of the username and password
+    6. From the Overview tab - copy the connection string under the Mongo URI heading
+
+Why did we just create a Database? Because we need the connection details for our MEAN app to connect to it and save
+data.
+
+hint: at this point you should have a string that looks something like this:
+    mongodb://user:password@something.mongohq.com:10002/mydatabase
+
+ADD YOUR MONGODB TO YOUR MEAN APP
+Open your new app in your IDE, e.g. use Webstorm or Sublime editor to locate and open your project directory.
+
+Go to <Your Project Root Folder>
+    -> config
+        -> env
+            -> development.js
+
+Modify the URI with the user/password you created from the website and replace the db line in the development.js file
+
+hint: this is line 4 of the file
+
+EXPLANATION TO THE PROJECT STRUCTURE:
+
+package.json
+    -> key things in this file are the dependencies and devDependencies section
+        -> dependencies are all the packages that npm installed when we set up the project - are used by the app
+            -> express - middleware
+            -> passport - authentication mechanism
+            -> forever - package that keeps app up and running
+        -> devDependencies - additional packages so that we can use our app during development
+            -> karma - test scripts
+            -> grunt validating and minimizing parts of the application during development
+        -> these are the things that our app needs to run
+            -> all the dependencies in the package.json file exist in the node_modules folder of our project
+
+karma.conf.js
+    -> used for setting up the testing configurations
+
+gruntfile.js
+    -> used for identifying the tasks that we want grunt to run
+
+bower.json
+    -> dependencies for the client side
+
+bowerrc
+    -> tells the app where we want the bower.json files stored
+
+.gitignore
+    -> all the files we want git to ignore
+
+public folder
+    -> all the angular specific code
+
+config folder
+    -> connections to mongodb, any api, configurations for your app (server side)
+
+app folder
+    -> server side related code
+
+config folder
+    -> all the configuration related data primarily for server side code
+
+
