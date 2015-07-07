@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://erickm:m3andb@ds061751.mongolab.com:61751/mean-database',
+	db: 'mongodb://admin:password@ds051750.mongolab.com:51750/mean-database',
 	app: {
 		title: 'myApp - Development Environment'
 	},
